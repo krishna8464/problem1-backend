@@ -19,7 +19,24 @@ app.get("/greet",async(req,res)=>{
     } catch (error) {
         res.send("the server is not working")
     }
-})
+});
+
+app.post("/data", async (req, res) => {
+    try {
+        const response = await fetch("https://gpt-api.richexplorer.com/api/general", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(req.body)
+        });
+        const data = await response.text();
+        res.send(data);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({ error: "Internal Server Error" });
+    }
+});
 
 
 app.use("/",userRoute);
