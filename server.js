@@ -30,7 +30,7 @@ app.post("/data", async (req, res) => {
             },
             body: JSON.stringify(req.body)
         });
-        const data = await response.text();
+        const data = await response.json();
         res.send(data);
     } catch (error) {
         console.log(error);
