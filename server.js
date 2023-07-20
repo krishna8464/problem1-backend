@@ -12,7 +12,18 @@ app.use(express.json());
 app.use(cors({
     origin:"*"
 }));
+
+app.get("/greet",async(req,res)=>{
+    try {
+        res.send({"msg":"Welcome to the server"});
+    } catch (error) {
+        res.send("the server is not working")
+    }
+})
+
+
 app.use("/",userRoute);
+
 
 
 app.listen(PORT,async()=>{
